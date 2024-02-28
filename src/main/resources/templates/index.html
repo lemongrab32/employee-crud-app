@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+          rel="stylesheet"
+          integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
+          crossorigin="anonymous">
+    <title>Employees</title>
+</head>
+<body>
+    <div th:fragment="header" class="container border-bottom">
+        <header class="d-flex justify-content-center py-3">
+            <ul class="nav nav-pills">
+                <li class="nav-item"><a th:href="@{/}" class="nav-link active" aria-current="page">Home</a></li>
+                <li class="nav-item"><a th:href="@{/add}" class="nav-link">Add</a></li>
+            </ul>
+        </header>
+    </div>
+    <h1 style="margin: 15px 2%">List of employees:</h1>
+    <div class="table-responsive small" style="margin-top: 25px">
+        <table class="table table-striped table-sm" style="text-align: center">
+            <thead>
+                <tr>
+                    <th scope="col">id</th>
+                    <th scope="col">first name</th>
+                    <th scope="col">last name</th>
+                    <th scope="col">gender</th>
+                    <th scope="col">email</th>
+                    <th scope="col">post</th>
+                    <th scope="col">salary</th>
+                    <th scope="col">country</th>
+                    <th scope="col">city</th>
+                    <th scope="col">street</th>
+                    <th scope="col">house number</th>
+                    <th scope="col">apartment number</th>
+                    <th scope="col">postal code</th>
+                    <th scope="col"></th>
+                    <th scope="col"></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="employee : ${employees}">
+                    <td th:text="${employee.id}"></td>
+                    <td th:text="${employee.firstName}"></td>
+                    <td th:text="${employee.lastName}"></td>
+                    <td th:text="${employee.gender}"></td>
+                    <td th:text="${employee.email}"></td>
+                    <td th:text="${employee.post}"></td>
+                    <td th:text="${employee.salary}"></td>
+                    <td th:text="${employee.address.country}"></td>
+                    <td th:text="${employee.address.city}"></td>
+                    <td th:text="${employee.address.street}"></td>
+                    <td th:text="${employee.address.houseNumber}"></td>
+                    <td th:text="${employee.address.apartmentNumber}"></td>
+                    <td th:text="${employee.address.postalCode}"></td>
+                    <td><a th:href="@{/edit/{id}(id=${employee.id})}" th:text="edit"></a></td>
+                    <td><a th:href="@{/delete/{id}(id=${employee.id})}" th:text="delete"></a></td>
+                    <td></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>
